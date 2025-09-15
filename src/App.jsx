@@ -5,9 +5,9 @@ import Home from "./pages/Home";
 function App() {
 	return (
 		<Router>
-			<div className="min-h-screen">
+			<div className="min-h-screen bg-[var(--light-gray)]">
 				<Header />
-				<div className="container mx-auto py-4">
+				<div className="mx-3 py-1">
 					<Routes>
 						<Route path="/" element={<Home />} />
 					</Routes>

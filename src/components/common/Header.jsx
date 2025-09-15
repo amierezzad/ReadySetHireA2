@@ -9,21 +9,21 @@ function Header() {
 	};
 
 	return (
-		<header className="mx-3 mt-3 mb-6">
-			<div className="bg-white rounded-full px-6 py-3">
+		<header className="mx-3 mb-1">
+			<div className="bg-[var(--light-gray)] rounded-full px-6 py-5">
 				<div className="flex justify-between items-center">
 					{/* Logo */}
 					<div className="text-gray-700 font-medium flex items-center justify-center flex-1">
-						<h3 className="font-bold text-lg">
+						<h1 className="font-bold text-lg text-[var(--dark-green)]">
 							ReadySetHire - Smart. Simple. Scalable.
-						</h3>
+						</h1>
 					</div>
 
 					{/* Navigation Pills */}
-					<nav className="flex bg-gray-100 rounded-full p-1 space-x-1">
+					<nav className="flex bg-white shadow-lg rounded-full p-2 space-x-1">
 						<Link
 							to="/take-interview"
-							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+							className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center ${
 								isActive("/take-interview")
 									? "bg-[var(--primary-green)] text-black shadow-sm"
 									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
@@ -33,7 +33,7 @@ function Header() {
 						</Link>
 						<Link
 							to="/questions"
-							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+							className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center ${
 								isActive("/questions")
 									? "bg-[var(--primary-green)] text-black shadow-sm"
 									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
@@ -43,7 +43,7 @@ function Header() {
 						</Link>
 						<Link
 							to="/"
-							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+							className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center ${
 								isActive("/")
 									? "bg-[var(--primary-green)] text-black shadow-sm"
 									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
@@ -53,7 +53,7 @@ function Header() {
 						</Link>
 						<Link
 							to="/interviews"
-							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+							className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center ${
 								isActive("/interviews")
 									? "bg-[var(--primary-green)] text-black shadow-sm"
 									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
@@ -63,7 +63,7 @@ function Header() {
 						</Link>
 						<Link
 							to="/applicants"
-							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+							className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center ${
 								isActive("/applicants")
 									? "bg-[var(--primary-green)] text-black shadow-sm"
 									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"

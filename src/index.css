@@ -6,11 +6,16 @@
 /* Custom CSS variables */
 :root {
 	--primary-green: #a4f5a6;
-	--primary-purple: #8b5cf6;
+	--primary-green-light: rgba(164, 245, 166, 0.4); /* 30% opacity */
+
+	--dark-green: #414a37;
+	--primary-purple: #b3a1ff;
+	--primary-purple-light: rgba(179, 161, 255, 0.4); /* 40% opacity */
+
 	--warning-orange: #f59e0b;
 	--primary-blue: #3b82f6;
-	--light-gray: #f8fafc;
-	--border-gray: #d4dcd3;
+	--light-gray: #d4dcd3;
+	/* --border-gray: #d4dcd3; */
 }
 body {
 	font-family: "Nunito Sans", system-ui, sans-serif;
