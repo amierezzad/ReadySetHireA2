@@ -9,83 +9,72 @@ function Header() {
 	};
 
 	return (
-		<nav className="bg-white shadow-sm mb-6 mx-3 mt-3 rounded-2xl">
-			<div className="px-6 py-4">
+		<header className="mx-3 mt-3 mb-6">
+			<div className="bg-white rounded-full px-6 py-3">
 				<div className="flex justify-between items-center">
 					{/* Logo */}
-					<div className="font-bold text-xl text-gray-900">
-						ReadySetHire
-						<span className="text-gray-500 text-base ml-2 font-normal">
-							- Smart. Simple. Scalable.
-						</span>
+					<div className="text-gray-700 font-medium flex items-center justify-center flex-1">
+						<h3 className="font-bold text-lg">
+							ReadySetHire - Smart. Simple. Scalable.
+						</h3>
 					</div>
 
 					{/* Navigation Pills */}
-					<ul className="flex bg-gray-100 p-2 rounded-xl space-x-1">
-						<li>
-							<Link
-								to="/take-interview"
-								className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-									isActive("/take-interview")
-										? "bg-white text-blue-600 shadow-sm"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-								}`}
-							>
-								Take Interview
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/questions"
-								className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-									isActive("/questions")
-										? "bg-white text-blue-600 shadow-sm"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-								}`}
-							>
-								Question
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/"
-								className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-									isActive("/")
-										? "bg-white text-blue-600 shadow-sm"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-								}`}
-							>
-								Home
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/interviews"
-								className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-									isActive("/interviews")
-										? "bg-white text-blue-600 shadow-sm"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-								}`}
-							>
-								Interviews
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/applicants"
-								className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-									isActive("/applicants")
-										? "bg-white text-blue-600 shadow-sm"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-								}`}
-							>
-								Applicant
-							</Link>
-						</li>
-					</ul>
+					<nav className="flex bg-gray-100 rounded-full p-1 space-x-1">
+						<Link
+							to="/take-interview"
+							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+								isActive("/take-interview")
+									? "bg-[var(--primary-green)] text-black shadow-sm"
+									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+							}`}
+						>
+							Take Interview
+						</Link>
+						<Link
+							to="/questions"
+							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+								isActive("/questions")
+									? "bg-[var(--primary-green)] text-black shadow-sm"
+									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+							}`}
+						>
+							Question
+						</Link>
+						<Link
+							to="/"
+							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+								isActive("/")
+									? "bg-[var(--primary-green)] text-black shadow-sm"
+									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+							}`}
+						>
+							Home
+						</Link>
+						<Link
+							to="/interviews"
+							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+								isActive("/interviews")
+									? "bg-[var(--primary-green)] text-black shadow-sm"
+									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+							}`}
+						>
+							Interviews
+						</Link>
+						<Link
+							to="/applicants"
+							className={`px-8 py-2 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center whitespace-nowrap ${
+								isActive("/applicants")
+									? "bg-[var(--primary-green)] text-black shadow-sm"
+									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+							}`}
+						>
+							Applicant
+						</Link>
+					</nav>
 				</div>
 			</div>
-		</nav>
+		</header>
 	);
 }
 
