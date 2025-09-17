@@ -2,6 +2,8 @@
 
 /* Tailwind CSS imports */
 @import "tailwindcss";
+/* stylelint-disable-next-line */
+@plugin "daisyui";
 
 /* Custom CSS variables */
 :root {
@@ -19,4 +21,5 @@
 }
 body {
 	font-family: "Nunito Sans", system-ui, sans-serif;
+	color: black;
 }
