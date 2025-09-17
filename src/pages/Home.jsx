@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InterviewCard from "../components/interviews/InterviewCard";
+import { Link, useLocation } from "react-router-dom";
 
 const FilterSelect = () => {
 	return (
@@ -71,7 +72,7 @@ function Home() {
 						<p className="text-gray-500">Manage your interview campaign</p>
 					</div>
 					<button className="bg-[var(--primary-purple)] hover:bg-purple-400 text-black px-3 py-2 font-bold rounded-full transition-colors">
-						Add Interview
+						<Link to="add-interview">Add Interview</Link>
 					</button>
 				</div>
 			</div>

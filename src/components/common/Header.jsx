@@ -52,9 +52,9 @@ function Header() {
 							Home
 						</Link>
 						<Link
-							to="/interviews"
+							to="/add-interview"
 							className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-200 flex items-center justify-center ${
-								isActive("/interviews")
+								isActive("/add-interview")
 									? "bg-[var(--primary-green)] text-black shadow-sm"
 									: "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
 							}`}
