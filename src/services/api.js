@@ -62,7 +62,6 @@ async function apiRequest(endpoint, method = "GET", body = null) {
 export async function createInterview(interview) {
 	return apiRequest("/interview", "POST", interview);
 }
-
 /**
  * Function to list all projects associated with the current user.
  *
@@ -84,6 +83,9 @@ export async function getInterview(id) {
 }
 export async function deleteInterview(id) {
 	return apiRequest(`/interview?id=eq.${id}`, "DELETE");
+}
+export async function updateInterview(id, data) {
+	return apiRequest(`/interview?id=eq.${id}`, "PATCH", data);
 }
 /**
  * Main function to demonstrate API usage.

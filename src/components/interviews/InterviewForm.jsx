@@ -1,10 +1,20 @@
-import { useState } from "react";
-import { createInterview } from "../../services/api";
+import { useState, useEffect } from "react";
+
+import {
+	createInterview,
+	getInterview,
+	updateInterview,
+} from "../../services/api";
+
 import Alert from "../common/Alert";
 import { useAlert } from "../../hooks/useAlert";
-
+import { useParams } from "react-router-dom";
 const InterviewForm = () => {
 	const { alert, showAlert, hideAlert } = useAlert();
+	// edit mode
+	const { id } = useParams();
+	const isEdit = id ? true : false;
+
 	const [formData, setFormData] = useState({
 		title: "",
 		job_role: "",
@@ -14,20 +24,48 @@ const InterviewForm = () => {
 	const handleInputChange = (field, value) => {
 		setFormData({ ...formData, [field]: value });
 	};
+	// get and update interview
+	useEffect(() => {
+		if (isEdit) {
+			const fetchInterview = async () => {
+				try {
+					const interviewData = await getInterview(id);
+					setFormData({
+						title: interviewData[0].title,
+						job_role: interviewData[0].job_role,
+						description: interviewData[0].description,
+						status: interviewData[0].status,
+					});
+				} catch (error) {
+					showAlert("Failed to load interview data", "error");
+				}
+			};
+			fetchInterview();
+		}
+	}, [id, isEdit]);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		try {
-			await createInterview(formData);
-			showAlert("Interview Created SuccessFully!", "success");
-			setFormData({
-				title: "",
-				job_role: "",
-				description: "",
-				status: "Draft",
-			});
+			if (isEdit) {
+				await updateInterview(id, formData);
+				showAlert("Interview Updated SuccessFully!", "info");
+			} else {
+				await createInterview(formData);
+				showAlert("Interview Created SuccessFully!", "success");
+				setFormData({
+					title: "",
+					job_role: "",
+					description: "",
+					status: "Draft",
+				});
+			}
 		} catch (error) {
-			showAlert("Failed to create interview", "error");
+			showAlert(
+				isEdit ? "Failed to update interview" : "Failed to create interview",
+				"error"
+			);
 		}
 	};
 
@@ -42,12 +80,16 @@ const InterviewForm = () => {
 
 			<div className="bg-white shadow-sm rounded-2xl max-w-2xl mx-auto">
 				{/* Header Section */}
+
 				<div className="p-6 text-center border-b border-gray-100">
 					<h2 className="text-xl font-bold text-gray-900 mb-2">
-						Create Your Interview
+						{!isEdit ? "Create Your Interview" : "Update Your Interview"}
 					</h2>
+
 					<p className="text-gray-500">
-						Fill in the form below to add new interview
+						{!isEdit
+							? "Fill in the form below to add new interview"
+							: "Edit the details of your interview"}
 					</p>
 				</div>
 
@@ -124,7 +166,7 @@ const InterviewForm = () => {
 								type="submit"
 								className="flex-1 bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors"
 							>
-								Create
+								{!isEdit ? "Create" : "Update"}
 							</button>
 							<button
 								type="button"

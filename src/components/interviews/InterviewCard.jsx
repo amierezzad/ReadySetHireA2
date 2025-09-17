@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { getInterviews, deleteInterview } from "../../services/api";
 import Alert from "../common/Alert";
 import { useAlert } from "../../hooks/useAlert";
+import { Link } from "react-router-dom";
+
 // API calls
 const InterviewCard = () => {
 	const { alert, showAlert, hideAlert } = useAlert();
@@ -22,8 +24,6 @@ const InterviewCard = () => {
 				setInterviews(ivdata);
 			} catch (error) {
 				console.error("API Calls Failed...");
-			} finally {
-				setLoading(false);
 			}
 		};
 		fetchData();
@@ -38,7 +38,7 @@ const InterviewCard = () => {
 				interviews.filter((interview) => interview.id !== interviewId)
 			);
 			console.log("Delete Succeed...");
-			if (setDelete) {
+			if (isDelete) {
 				showAlert("Interview Deleted Successfully", "warning");
 			}
 		} catch (error) {
@@ -122,7 +122,9 @@ const InterviewCard = () => {
 
 									<div className="flex gap-3 sm:justify-center gap-4">
 										<button className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors">
-											<FaEdit className="w-6 h-6 text-black" />
+											<Link to={`edit-interview/${interview.id}`}>
+												<FaEdit className="w-6 h-6 text-black" />
+											</Link>
 										</button>
 										<button
 											onClick={() => handleDeletion(interview.id)}

@@ -12,6 +12,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/add-interview" element={<InterviewForm />} />
+						<Route path="/edit-interview/:id" element={<InterviewForm />} />
 					</Routes>
 				</div>
 				<Footer />

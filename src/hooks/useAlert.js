@@ -8,7 +8,7 @@ export const useAlert = () => {
 		message: "",
 	});
 
-	const showAlert = (message, type = "success", duration = 3000) => {
+	const showAlert = (message, type = "success", duration = 300000) => {
 		setAlert({ show: true, type, message });
 
 		if (duration > 0) {

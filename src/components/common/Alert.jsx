@@ -1,7 +1,18 @@
 // src/components/common/Alert.jsx
 export const Alert = ({ show, type = "success", message, onClose }) => {
 	if (!show) return null;
-
+	const getAlertStyle = () => {
+		switch (type) {
+			case "success":
+				return "alert alert-success";
+			case "error":
+				return "alert alert-error";
+			case "warning":
+				return "alert alert-warning";
+			default:
+				return "alert alert-info";
+		}
+	};
 	const getIcon = () => {
 		switch (type) {
 			case "success":
@@ -38,7 +49,7 @@ export const Alert = ({ show, type = "success", message, onClose }) => {
 
 	return (
 		<div className="w-full max-w-2xl mx-auto px-3 mb-4">
-			<div role="alert" className={`alert alert-${type}`}>
+			<div role="alert" className={getAlertStyle()}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					className="h-6 w-6 shrink-0 stroke-current"

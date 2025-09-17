@@ -2,7 +2,7 @@
 
 /* Tailwind CSS imports */
 @import "tailwindcss";
-/* stylelint-disable-next-line */
+
 @plugin "daisyui";
 
 /* Custom CSS variables */
