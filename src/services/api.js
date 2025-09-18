@@ -90,6 +90,7 @@ export async function updateInterview(id, data) {
 
 ////////////////////////////////////////////////////////////////////////////////
 // Question API Request
+////////////////////////////////////////////////////////////////////////////////
 
 // Question API Functions - Add these to your api.js file
 
@@ -143,40 +144,56 @@ export async function updateQuestion(id, data) {
 export async function deleteQuestion(id) {
 	return apiRequest(`/question?id=eq.${id}`, "DELETE");
 }
+////////////////////////////////////////////////////////////////////////////////
+// Applicant API Request
+////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Main function to demonstrate API usage.
+ * Function to create a new applicant for an interview.
  *
- * Creates a new interview, lists all interviews, and retrieves a single interview by ID.
+ * @param {object} applicant - The applicant data to insert.
+ * @returns {Promise<object>} - The created applicant object returned by the API.
  */
-async function main() {
-	try {
-		// Create a new interview with specific details
-		const newInterview = {
-			title: "Front-end Developer Interview",
-			job_role: "Mid-level Front-end Developer",
-			description:
-				"Interview focusing on React, JavaScript fundamentals, and responsive design principles.",
-			status: "Draft", // The interview is not published initially (Draft status)
-		};
-		const createdInterview = await createInterview(newInterview);
-		console.log("Created Interview:", createdInterview);
-
-		// Retrieve and list all interviews associated with your account
-		const allInterviews = await getInterviews();
-		console.log("All Interviews:", allInterviews);
-
-		// If there are interviews, retrieve the first one by its ID
-		if (allInterviews.length > 0) {
-			const singleInterview = await getInterview(allInterviews[0].id);
-			console.log("Single Interview:", singleInterview);
-		}
-
-		// Further functionality for other endpoints like /question can be added here...
-	} catch (error) {
-		console.error("Error:", error.message); // Log any errors that occur
-	}
+export async function createApplicant(applicant){
+	return apiRequest("/applicant", "POST", applicant);
+}
+/**
+ * Function to get all applicants for a specific interview.
+ *
+ * @param {string} interviewId - The ID of the interview to get applicant for.
+ * @returns {Promise<Array>} - An array of applicant objects.
+ */
+export async function getApplicants(interviewId) {
+	return apiRequest(`/applicant?interview_id=eq.${interviewId}`);
 }
 
-//Execute the main function
-// main();
+/**
+ * Function to get a one applicant by its ID.
+ *
+ * @param {string} id - The ID of the applicant to retrieve.
+ * @returns {Promise<object>} - The applicant object matching the ID.
+ */
+export async function getApplicant(id) {
+	return apiRequest(`/applicant?id=eq.${id}`);
+}
+
+/**
+ * Function to update an applicant.
+ *
+ * @param {string} id - The ID of the applicant to update.
+ * @param {object} data - The updated applicant data.
+ * @returns {Promise<object>} - The updated applicant object.
+ */
+export async function updateApplicant(id, data) {
+	return apiRequest(`/applicant?id=eq.${id}`, "PATCH", data);
+}
+
+/**
+ * Function to delete an applicant.
+ *
+ * @param {string} id - The ID of the applicant to delete.
+ * @returns {Promise<object>} - Success response.
+ */
+export async function deleteApplicant(id) {
+	return apiRequest(`/applicant?id=eq.${id}`, "DELETE");
+}

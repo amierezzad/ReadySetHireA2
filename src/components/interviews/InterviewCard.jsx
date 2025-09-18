@@ -109,11 +109,13 @@ const InterviewCard = () => {
 									</span>
 
 									<div className="flex flex-col gap-2">
+										<Link to={`applicants/${interview.id}`}>
 										<button className="flex items-center gap-2 px-3 py-1 text-black font-bold hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors text-sm sm:text-base">
 											<IoPeopleOutline className="w-6 h-6 text-black" />
 
 											<span>Applicants</span>
 										</button>
+										</Link>
 										<Link to={`questions/${interview.id}`}>
 											<button className="flex items-center gap-2 px-3 py-1 text-black font-bold hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors text-sm sm:text-base">
 												<PiChatCircleText className="w-6 h-6 text-black" />
@@ -123,7 +125,7 @@ const InterviewCard = () => {
 									</div>
 
 									<div className="flex gap-3 sm:justify-center gap-4">
-										<Link to={`edit-interview/${interview.id}`}>
+										<Link to={`interview/edit/${interview.id}`}>
 											<button className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors">
 												<FaEdit className="w-6 h-6 text-black" />
 											</button>

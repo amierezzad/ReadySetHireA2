@@ -72,7 +72,7 @@ function Home() {
 						<p className="text-gray-500">Manage your interview campaign</p>
 					</div>
 					<button className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-2 rounded-lg transition-colors flex items-center gap-2 self-start sm:self-auto">
-						<Link to="add-interview">
+						<Link to="interview/add">
 							<span className="text-lg">+ </span>
 							Add Interview
 						</Link>
