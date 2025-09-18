@@ -4,7 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoPeopleOutline, IoClose } from "react-icons/io5";
 import { PiChatCircleText } from "react-icons/pi";
 import { useEffect, useState } from "react";
-import { getInterviews, deleteInterview } from "../../services/api";
+import { getInterviews, deleteInterview, getApplicants } from "../../services/api";
 import InterviewForm from "./InterviewForm";
 import Alert from "../common/Alert";
 import { useAlert } from "../../hooks/useAlert";
@@ -20,10 +20,18 @@ const InterviewList = () => {
 		interviewId: null,
 	});
 
+	const [applicantCounts,setApplicantCounts] = useState({});
+	
+	const fetchCounts= async (interviewId) =>{
+		const applicants = await getApplicants(interviewId);
+		return{
+			completed: applicants.filter((applicant)=> applicant.interview_status === "Completed").length,
+			notStarted: applicants.filter((applicant)=> applicant.interview_status === "Not Started").length
+		};
+	}
 	useEffect(() => {
 		fetchInterviews();
 	}, []);
-
 	const fetchInterviews = async () => {
 		try {
 			setIsLoading(true);
@@ -31,6 +39,10 @@ const InterviewList = () => {
 			const ivdata = await getInterviews();
 			console.log("Got response YES", ivdata);
 			setInterviews(ivdata || []);
+			// get counts for all interviews
+			const counts = await fetchCountsFromId(ivdata);
+			setApplicantCounts(counts);
+			
 		} catch (error) {
 			console.error("API Calls Failed...", error);
 			setInterviews([]);
@@ -96,6 +108,16 @@ const InterviewList = () => {
 				return "bg-gray-100 text-gray-800";
 		}
 	};
+
+const fetchCountsFromId = async (ivdata) => {
+    const countPromises = ivdata.map(interview => fetchCounts(interview.id));
+    const countsArray = await Promise.all(countPromises);
+    const countsObject = {};
+    ivdata.forEach((interview, index) => {  
+        countsObject[interview.id] = countsArray[index];
+    });
+    return countsObject;
+}
 
 	return (
 		<>
@@ -167,7 +189,7 @@ const InterviewList = () => {
 												<div className="font-semibold text-sm sm:text-base">
 													Completed
 												</div>
-												<div className="text-lg sm:text-xl font-bold my-1">2</div>
+												<div className="text-lg sm:text-xl font-bold my-1">{applicantCounts[interview.id]?.completed || 0}</div>
 											</div>
 											<div className="p-3 sm:p-4 text-center bg-[var(--primary-purple-light)] rounded-xl min-w-[80px] sm:min-w-[100px]">
 												<div className="font-semibold text-sm sm:text-base">
@@ -179,7 +201,7 @@ const InterviewList = () => {
 												<div className="font-semibold text-sm sm:text-base">
 													Not Started
 												</div>
-												<div className="text-lg sm:text-xl font-bold my-1">2</div>
+												<div className="text-lg sm:text-xl font-bold my-1">{applicantCounts[interview.id]?.notStarted || 0}</div>
 											</div>
 										</div>
 
