@@ -3,6 +3,8 @@ import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import Home from "./pages/Home";
 import InterviewForm from "./components/interviews/InterviewForm";
+import QuestionList from "./components/questions/QuestionList";
+import QuestionForm from "./components/questions/QuestionForm";
 function App() {
 	return (
 		<Router>
@@ -12,7 +14,12 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/add-interview" element={<InterviewForm />} />
-						<Route path="/edit-interview/:id" element={<InterviewForm />} />
+						<Route
+							path="/edit-interview/:interviewId"
+							element={<InterviewForm />}
+						/>
+						<Route path="/questions/:interviewId" element={<QuestionList />} />
+						<Route path="questions/:id/add" element={<QuestionForm />} />
 					</Routes>
 				</div>
 				<Footer />

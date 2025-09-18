@@ -114,18 +114,20 @@ const InterviewCard = () => {
 
 											<span>Applicants</span>
 										</button>
-										<button className="flex items-center gap-2 px-3 py-1 text-black font-bold hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors text-sm sm:text-base">
-											<PiChatCircleText className="w-6 h-6 text-black" />
-											<span>Questions</span>
-										</button>
+										<Link to={`questions/${interview.id}`}>
+											<button className="flex items-center gap-2 px-3 py-1 text-black font-bold hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors text-sm sm:text-base">
+												<PiChatCircleText className="w-6 h-6 text-black" />
+												<span>Questions</span>
+											</button>
+										</Link>
 									</div>
 
 									<div className="flex gap-3 sm:justify-center gap-4">
-										<button className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors">
-											<Link to={`edit-interview/${interview.id}`}>
+										<Link to={`edit-interview/${interview.id}`}>
+											<button className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors">
 												<FaEdit className="w-6 h-6 text-black" />
-											</Link>
-										</button>
+											</button>
+										</Link>
 										<button
 											onClick={() => handleDeletion(interview.id)}
 											className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors"

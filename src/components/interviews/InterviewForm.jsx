@@ -12,8 +12,8 @@ import { useParams } from "react-router-dom";
 const InterviewForm = () => {
 	const { alert, showAlert, hideAlert } = useAlert();
 	// edit mode
-	const { id } = useParams();
-	const isEdit = id ? true : false;
+	const { interviewId } = useParams();
+	const isEdit = interviewId ? true : false;
 
 	const [formData, setFormData] = useState({
 		title: "",
@@ -29,7 +29,7 @@ const InterviewForm = () => {
 		if (isEdit) {
 			const fetchInterview = async () => {
 				try {
-					const interviewData = await getInterview(id);
+					const interviewData = await getInterview(interviewId);
 					setFormData({
 						title: interviewData[0].title,
 						job_role: interviewData[0].job_role,
@@ -42,14 +42,14 @@ const InterviewForm = () => {
 			};
 			fetchInterview();
 		}
-	}, [id, isEdit]);
+	}, [interviewId, isEdit]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		try {
 			if (isEdit) {
-				await updateInterview(id, formData);
+				await updateInterview(interviewId, formData);
 				showAlert("Interview Updated SuccessFully!", "info");
 			} else {
 				await createInterview(formData);
