@@ -349,7 +349,6 @@ const ApplicantList = () => {
 								onSuccess={handleFormSuccess}
 								onCancel={handleCloseModal}
 								showAlert={showAlert}
-								isModal={true}
 							/>
 						</div>
 					</div>

@@ -10,7 +10,6 @@ const ApplicantForm = ({
 	applicantId,
 	onSuccess,
 	onCancel,
-	isModal = false,
 	showAlert,
 }) => {
 	// Check if in edit mode
