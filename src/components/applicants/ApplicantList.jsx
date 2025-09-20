@@ -5,11 +5,14 @@ import { IoArrowBack, IoClose } from "react-icons/io5";
 import { MdContentCopy } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getApplicants, deleteApplicant, getInterview } from "../../services/api";
+import {
+	getApplicants,
+	deleteApplicant,
+	getInterview,
+} from "../../services/api";
 import ApplicantForm from "./ApplicantForm";
 import Alert from "../common/Alert";
 import { useAlert } from "../../hooks/useAlert";
-
 const ApplicantList = () => {
 	const { alert, showAlert, hideAlert } = useAlert();
 
@@ -103,11 +106,14 @@ const ApplicantList = () => {
 
 	const handleCopyLink = (applicantId) => {
 		const link = generateInterviewLink(applicantId);
-		navigator.clipboard.writeText(link).then(() => {
-			showAlert("Interview link copied to clipboard!", "info");
-		}).catch(() => {
-			showAlert("Failed to copy link", "error");
-		});
+		navigator.clipboard
+			.writeText(link)
+			.then(() => {
+				showAlert("Interview link copied to clipboard!", "info");
+			})
+			.catch(() => {
+				showAlert("Failed to copy link", "error");
+			});
 	};
 
 	const getStatusColor = (status) => {
@@ -191,7 +197,8 @@ const ApplicantList = () => {
 									<div className="lg:hidden space-y-3">
 										<div>
 											<div className="font-medium text-gray-900 mb-2">
-												{applicant.title} {applicant.firstname} {applicant.surname}
+												{applicant.title} {applicant.firstname}{" "}
+												{applicant.surname}
 											</div>
 											<div className="text-sm text-gray-500 mb-2">
 												Email: {applicant.email_address}
@@ -221,11 +228,11 @@ const ApplicantList = () => {
 													<MdContentCopy className="w-3 h-3" />
 													Copy Link
 												</button>
-												<button
-													className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 rounded-lg transition-colors"
-												>
-													Take Interview
-												</button>
+												<Link to="/take-interview">
+													<button className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 rounded-lg transition-colors">
+														Take Interview
+													</button>
+												</Link>
 												<button
 													onClick={() => handleEditApplicant(applicant.id)}
 													className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors"
@@ -246,7 +253,8 @@ const ApplicantList = () => {
 									<div className="hidden lg:grid lg:grid-cols-12 lg:gap-4 lg:items-center">
 										<div className="col-span-2">
 											<div className="font-medium text-gray-900">
-												{applicant.title} {applicant.firstname} {applicant.surname}
+												{applicant.title} {applicant.firstname}{" "}
+												{applicant.surname}
 											</div>
 										</div>
 										<div className="col-span-2">
@@ -282,11 +290,13 @@ const ApplicantList = () => {
 													<MdContentCopy className="w-3 h-3" />
 													Copy Link
 												</button>
-												<button
-													className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 rounded-lg transition-colors"
+												<Link
+													to={`/take-interview/${interviewId}/${applicant.id}`}
 												>
-													Take Interview
-												</button>
+													<button className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 rounded-lg transition-colors">
+														Take Interview
+													</button>
+												</Link>
 												<button
 													onClick={() => handleEditApplicant(applicant.id)}
 													className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-200 rounded-lg transition-colors"

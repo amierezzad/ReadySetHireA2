@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import InterviewList from "./components/interviews/InterviewList";
 import QuestionList from "./components/questions/QuestionList";
 import ApplicantList from "./components/applicants/ApplicantList";
+import TakeInterview from "./components/interview-portal/TakeInterview";
 function App() {
 	return (
 		<Router>
@@ -13,9 +14,13 @@ function App() {
 				<div className="flex-t mx-3 py-1">
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/interview/:interviewId" element={<InterviewList />}/>
-						<Route path="/questions/:interviewId" element={<QuestionList />}/>
-						<Route path="applicants/:interviewId" element={<ApplicantList/>}/>
+						<Route path="/interview/:interviewId" element={<InterviewList />} />
+						<Route path="/questions/:interviewId" element={<QuestionList />} />
+						<Route path="applicants/:interviewId" element={<ApplicantList />} />
+						<Route
+							path="take-interview/:interviewId/:applicantId"
+							element={<TakeInterview />}
+						/>
 					</Routes>
 				</div>
 				<Footer />
